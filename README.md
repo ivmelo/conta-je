@@ -39,4 +39,4 @@ Membros:
 - Pedro Paulo Figueiredo
 - Luana Lima
 - Ivanilson Melo
-- Vítor
+- Vítor Souza
