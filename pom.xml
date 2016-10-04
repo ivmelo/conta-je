@@ -11,25 +11,25 @@
     </parent>
 
     <groupId>br.edu.ifrn</groupId>
-    <artifactId>conta</artifactId>
+    <artifactId>biblioteka</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <properties>
         <java.version>1.8</java.version>
-        
+
         <duplicate.ignoredClassPattern>javax.persistence.(SynchronizationType|Persistence(Context|ContextType|Contexts|Property|Unit|Units))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>(changelog.txt|application.yml)</duplicate.ignoredResourcePattern>
-        <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>        
-        <checkstyle.excludes>br/edu/ifrn/conta/dominio/Q*</checkstyle.excludes>
+        <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>
+        <!-- <checkstyle.excludes>br/edu/ifrn/conta/dominio/Q*</checkstyle.excludes> -->
         <cobertura.totalLineRate>33</cobertura.totalLineRate>
         <cobertura.packageLineRate>33</cobertura.packageLineRate>
         <cobertura.lineRate>0</cobertura.lineRate>
         <cobertura.totalBranchRate>48</cobertura.totalBranchRate>
         <cobertura.packageBranchRate>50</cobertura.packageBranchRate>
         <cobertura.branchRate>0</cobertura.branchRate>
-        
-        <juplo-maven-plugin.version>2.0.0</juplo-maven-plugin.version>    
+
+        <juplo-maven-plugin.version>2.0.0</juplo-maven-plugin.version>
         <querydsl.version>4.1.4</querydsl.version>
         <apt-maven-plugin.version>1.1.3</apt-maven-plugin.version>
     </properties>
@@ -52,7 +52,7 @@
                 <groupId>com.querydsl</groupId>
                 <artifactId>querydsl-jpa</artifactId>
                 <version>${querydsl.version}</version>
-            </dependency>    
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -74,12 +74,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.joinfaces</groupId>
             <artifactId>jsf-spring-boot-starter</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -88,12 +88,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
-        </dependency>		
+        </dependency>
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <scope>test</scope>
-        </dependency>        
+        </dependency>
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-apt</artifactId>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
-        </dependency>    
+        </dependency>
     </dependencies>
 
     <build>
@@ -122,7 +122,7 @@
                             </configuration>
                         </execution>
                     </executions>
-                </plugin>                
+                </plugin>
                 <plugin>
                     <groupId>de.juplo</groupId>
                     <artifactId>hibernate-maven-plugin</artifactId>
@@ -130,15 +130,15 @@
                     <configuration>
                         <delimiter>;</delimiter>
                         <format>true</format>
-                        <dialect>org.hibernate.dialect.PostgreSQLDialect</dialect>                            
+                        <dialect>org.hibernate.dialect.PostgreSQLDialect</dialect>
                         <scanDependencies>system</scanDependencies>
                         <export>false</export>
                         <show>true</show>
                     </configuration>
-                </plugin>         
+                </plugin>
             </plugins>
         </pluginManagement>
-        
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -158,38 +158,31 @@
             <plugin>
                 <groupId>com.mysema.maven</groupId>
                 <artifactId>apt-maven-plugin</artifactId>
-            </plugin>        
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>cobertura-maven-plugin</artifactId>
                 <configuration>
                     <instrumentation>
                         <ignores>
-                            <ignore>br.edu.ifrn.conta.dominio.Q*</ignore>
+                            <!--<ignore>br.edu.ifrn.conta.dominio.Q*</ignore>-->
                         </ignores>
                         <excludes>
-                            <exclude>br/edu/ifrn/conta/dominio/QCategoria.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QConta.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QContaCredito.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QContaDebito.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QContaPatrimonio.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QDono.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QLancamento.class</exclude>
-                            <exclude>br/edu/ifrn/conta/dominio/QValorInicialDoDonoNaContaPatrimonio.class</exclude>
+                            <!--<exclude>br/edu/ifrn/conta/dominio/QCategoria.class</exclude>-->
                         </excludes>
                     </instrumentation>
-                </configuration>            
+                </configuration>
             </plugin>
         </plugins>
     </build>
 
-    <profiles>        
+    <profiles>
         <!-- criar script do esquema do banco de dados -->
         <profile>
             <id>schema</id>
             <build>
                 <plugins>
-                    <!-- gerando o script de criacao do banco -->            
+                    <!-- gerando o script de criacao do banco -->
                     <plugin>
                         <groupId>de.juplo</groupId>
                         <artifactId>hibernate-maven-plugin</artifactId>
@@ -217,42 +210,66 @@
                                 </configuration>
                             </execution>
                         </executions>
-                    </plugin>         
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
 
-    <name>conta</name>
-    <description>Conta do Desenvolvimento de Sistemas Corporativos</description>
-    <url>https://github.com/persapiens/conta</url>
+    <name>biblioteka</name>
+    <description>Sistema de Gerenciamento de Biblioteca para a disciplina de Desenvolvimento de Sistemas Corporativos</description>
+    <url>https://github.com/ivmelo/biblioteka</url>
     <inceptionYear>2016</inceptionYear>
 
     <!-- Issue Managment -->
     <issueManagement>
         <system>Github</system>
-        <url>https://github.com/persapiens/conta/issues</url>
+        <url>https://github.com/ivmelo/biblioteka/issues</url>
     </issueManagement>
 
     <!-- SCM -->
     <scm>
-        <connection>scm:git:https://github.com/persapiens/conta.git</connection>
-        <developerConnection>scm:git:https://github.com/persapiens/conta.git</developerConnection>
-        <url>scm:git:https://github.com/persapiens/conta.git</url>
+        <connection>scm:git:https://github.com/ivmelo/biblioteka.git</connection>
+        <developerConnection>scm:git:https://github.com/ivmelo/biblioteka.git</developerConnection>
+        <url>scm:git:https://github.com/ivmelo/biblioteka.git</url>
         <tag>HEAD</tag>
     </scm>
 
     <!-- Organization -->
     <organization>
-        <name>Persapiens</name>
-        <url>https://github.com/persapiens</url>
+        <name>Jovem Exemplar</name>
+        <url>https://jovemexemplar.com</url>
     </organization>
-    
+
     <developers>
         <developer>
-            <id>persapiens</id>
-            <name>Marcelo Romulo Fernandes</name>
-            <email>persapiens@gmail.com</email>
+            <id>ivmelo</id>
+            <name>Ivanilson Melo</name>
+            <email>meloivanilson@gmail.com</email>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>username_no_github</id>
+            <name>Seu Nome</name>
+            <email>seuemail@gmail.com</email>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>username_no_github</id>
+            <name>Seu Nome</name>
+            <email>seuemail@gmail.com</email>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>username_no_github</id>
+            <name>Seu Nome</name>
+            <email>seuemail@gmail.com</email>
+            <timezone>-3</timezone>
+        </developer>
+        <developer>
+            <id>username_no_github</id>
+            <name>Seu Nome</name>
+            <email>seuemail@gmail.com</email>
             <timezone>-3</timezone>
         </developer>
     </developers>
