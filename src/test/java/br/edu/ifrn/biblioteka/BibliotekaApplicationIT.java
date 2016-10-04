@@ -14,24 +14,19 @@
  * limitations under the License.
  */
 
-package br.edu.ifrn.conta.visao.crud;
+package br.edu.ifrn.biblioteka;
 
-import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-import br.edu.ifrn.conta.dominio.Dono;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/**
- * CrudMBean de Dono.
- * @author Marcelo Fernandes
- */
-@ViewScoped
-@Named
-public class DonoCrudMBean extends CrudMBean<Dono, Long> {
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringBootTest(classes = BibliotekaApplication.class)
+public class BibliotekaApplicationIT {
 
-	@Override
-	protected Dono createBean() {
-		return Dono.builder().build();
+	@Test
+	public void contextLoads() {
 	}
-
 }
