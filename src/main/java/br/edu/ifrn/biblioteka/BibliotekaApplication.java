@@ -14,24 +14,24 @@
  * limitations under the License.
  */
 
-package br.edu.ifrn.conta.visao.crud;
+package br.edu.ifrn.biblioteka;
 
-import javax.faces.bean.ViewScoped;
-import javax.inject.Named;
-
-import br.edu.ifrn.conta.dominio.Categoria;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
- * CrudMBean de Categoria.
+ * Classe main.
  * @author Marcelo Fernandes
  */
-@ViewScoped
-@Named
-public class CategoriaCrudMBean extends CrudMBean<Categoria, Long> {
+@SpringBootApplication
+public class BibliotekaApplication {
 
-	@Override
-	protected Categoria createBean() {
-		return Categoria.builder().build();
+	protected BibliotekaApplication() {
 	}
 
+	public static void main(String[] args) {
+		new SpringApplicationBuilder()
+			.sources(BibliotekaApplication.class)
+			.run(args);
+	}
 }
