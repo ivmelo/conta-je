@@ -266,11 +266,5 @@
             <email>pvitors@me.com</email>
             <timezone>-3</timezone>
         </developer>
-        <developer>
-            <id>username_no_github</id>
-            <name>Seu Nome</name>
-            <email>seuemail@gmail.com</email>
-            <timezone>-3</timezone>
-        </developer>
     </developers>
 </project>
