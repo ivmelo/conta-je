@@ -17,7 +17,7 @@ As notas de aula utilizadas no desenvolvimento deste projeto estão [aqui](https
 
 1- Clone o projeto
 ```Shell
-git clone https://github.com/persapiens/conta.git
+git clone git@github.com:ivmelo/biblioteka.git
 ```
 
 2- Construa a aplicação
