@@ -20,3 +20,5 @@ jsf:
 info:
   url: @project.url@
   version: @project.version@
+server:
+  port: 7070
