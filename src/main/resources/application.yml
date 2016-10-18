@@ -20,3 +20,11 @@ jsf:
 info:
   url: @project.url@
   version: @project.version@
+  
+  
+#Permite o shutdown e coloca o caminho como /sair para fechar a aplicação
+#Por default, o caminho e mapeado para o id. Neste caso, /sair.
+endpoints:
+  shutdown:
+    enabled: true
+    id: sair
