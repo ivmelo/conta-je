@@ -44,21 +44,8 @@ public class Categoria implements Comparable<Categoria> {
 	private String nome;
 
 	@Override
-	public int compareTo(Categoria o) {
-		int result = 0;
-		if (this.nome != null && o.nome != null) {
-			result = this.nome.compareTo(o.nome);
-		}
-		else if (this.nome == null && o.nome == null) {
-			result = 0;
-		}
-		else if (this.nome == null) {
-			result = -1;
-		}
-		else {
-			result = +1;
-		}
-		return result;
+	public int compareTo(Categoria c) {
+            return this.nome.compareTo(c.nome);
 	}
 
 }

@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package br.edu.ifrn.biblioteka;
+package br.edu.ifrn.biblioteka.dominio;
 
-import java.util.Set;
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,28 +35,22 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude={"id"})
 @Builder
+@Entity
 public class Autor implements Comparable<Autor> {
 
-	private String nome;
+    private static final long serialVersionUID = 1L;
+    
+    @Id
+    private long id;
+    
+    @Column(nullable = false, unique = true)
+    private String nome;
 
-	@Override
-	public int compareTo(Categoria o) {
-		int result = 0;
-		if (this.nome != null && o.nome != null) {
-			result = this.nome.compareTo(o.nome);
-		}
-		else if (this.nome == null && o.nome == null) {
-			result = 0;
-		}
-		else if (this.nome == null) {
-			result = -1;
-		}
-		else {
-			result = +1;
-		}
-		return result;
-	}
+    @Override
+    public int compareTo(Autor au) {
+        return this.nome.compareTo(au.nome);
+    }
 
 }
