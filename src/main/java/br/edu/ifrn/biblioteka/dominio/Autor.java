@@ -15,10 +15,29 @@
  */
 package br.edu.ifrn.biblioteka.dominio;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 /**
  *
  * @author ivanilson
  */
+@Entity
 class Autor {
     
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private Long id;
+    
+    // Trocar por anotação @Getter
+    public Long getId() {
+        return id;
+    }
+    
+    // Trocar por anotação @Setter
+    public void setId(Long id) {
+        this.id = id;
+    }
+       
 }

@@ -22,6 +22,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -37,10 +39,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode(exclude = {"id", "descricao"})
+@SequenceGenerator(sequenceName = "seq_livro", name = "ID_SEQUENCE", allocationSize = 1)
 @Builder
 @Entity
 public class Livro implements Comparable<Livro> {
     
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
     private long id;
@@ -51,13 +56,13 @@ public class Livro implements Comparable<Livro> {
     @Column(nullable = false, unique = true)
     private String isbn;
     
-    @Singular
-    @OneToMany(mappedBy = "autor")
-    private Set<Autor> autores;
+//    @Singular
+//    @ManyToMany(mappedBy = "livro")
+//    private Set<Autor> autores;
     
-    @Singular
-    @OneToMany(mappedBy = "categoria")
-    private Set<Categoria> categorias;
+//    @Singular
+//    @ManyToMany(mappedBy = "livros")
+//    private Set<Categoria> categorias;
     
     @Column(nullable = false, unique = false)
     private int paginas;
