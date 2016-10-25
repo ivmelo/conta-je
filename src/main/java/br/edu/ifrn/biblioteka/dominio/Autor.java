@@ -13,31 +13,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package br.edu.ifrn.biblioteka.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+package br.edu.ifrn.biblioteka;
+
+import java.util.Set;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Singular;
+import lombok.ToString;
 
 /**
- *
- * @author ivanilson
+ * Autor entity.
  */
-@Entity
-class Autor {
-    
-    private static final long serialVersionUID = 1L;
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@Builder
+public class Autor implements Comparable<Autor> {
 
-    @Id
-    private Long id;
-    
-    // Trocar por anotação @Getter
-    public Long getId() {
-        return id;
-    }
-    
-    // Trocar por anotação @Setter
-    public void setId(Long id) {
-        this.id = id;
-    }
-       
+	private String nome;
+
+	@Override
+	public int compareTo(Categoria o) {
+		int result = 0;
+		if (this.nome != null && o.nome != null) {
+			result = this.nome.compareTo(o.nome);
+		}
+		else if (this.nome == null && o.nome == null) {
+			result = 0;
+		}
+		else if (this.nome == null) {
+			result = -1;
+		}
+		else {
+			result = +1;
+		}
+		return result;
+	}
+
 }
