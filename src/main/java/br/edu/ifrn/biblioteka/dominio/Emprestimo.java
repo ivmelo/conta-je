@@ -31,11 +31,30 @@ import lombok.Builder;
 @EqualsAndHashCode
 @ToString
 @Builder
-public class Emprestimo {
+public class Emprestimo implements Comparable<Emprestimo>{
         
     private Livro livro;
     private Usuario usuario;
     private Date dataRetirada;
     private Date dataEntrega;
+    
+    @Override
+    public int compareTo(Emprestimo e) {
+        int result = this.dataRetirada.compareTo(dataRetirada);
+        
+        if (result == 0) {
+            result = this.dataEntrega.compareTo(dataEntrega);
+        }
+        
+        if (result == 0) {
+            result = this.usuario.compareTo(e.usuario);
+        }
+        
+        if (result == 0) {
+            result = this.livro.compareTo(e.livro);
+        }
+        
+        return result;
+    }
     
 }
