@@ -15,10 +15,27 @@
  */
 package br.edu.ifrn.biblioteka.dominio;
 
+import java.util.Date;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.Builder;
+
 /**
  *
  * @author ivanilson
  */
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@Builder
 public class Emprestimo {
+        
+    private Livro livro;
+    private Usuario usuario;
+    private Date dataRetirada;
+    private Date dataEntrega;
     
 }

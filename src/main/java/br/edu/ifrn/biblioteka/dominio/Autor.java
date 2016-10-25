@@ -16,18 +16,13 @@
 
 package br.edu.ifrn.biblioteka.dominio;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
+import java.util.Set;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Singular;
 import lombok.ToString;
+import lombok.Singular;
 
 /**
  * Autor entity.
@@ -35,19 +30,15 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(exclude={"id"})
+@EqualsAndHashCode
 @Builder
-@Entity
 public class Autor implements Comparable<Autor> {
 
-    private static final long serialVersionUID = 1L;
-    
-    @Id
-    private long id;
-    
-    @Column(nullable = false, unique = true)
     private String nome;
 
+    @Singular
+    private Set<Livro> livros;
+    
     @Override
     public int compareTo(Autor au) {
         return this.nome.compareTo(au.nome);

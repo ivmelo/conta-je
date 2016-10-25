@@ -16,13 +16,6 @@
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Set;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -38,45 +31,28 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(exclude = {"id", "descricao"})
-@SequenceGenerator(sequenceName = "seq_livro", name = "ID_SEQUENCE", allocationSize = 1)
+@EqualsAndHashCode(exclude = {"descricao"})
 @Builder
-@Entity
 public class Livro implements Comparable<Livro> {
-    
-    private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
-    private long id;
-    
-    @Column(nullable = false, unique = true)
+        
     private String titulo;
     
-    @Column(nullable = false, unique = true)
     private String isbn;
     
-//    @Singular
-//    @ManyToMany(mappedBy = "livro")
-//    private Set<Autor> autores;
+    @Singular
+    private Set<Autor> autores;
     
-//    @Singular
-//    @ManyToMany(mappedBy = "livros")
-//    private Set<Categoria> categorias;
+    @Singular
+    private Set<Categoria> categorias;
     
-    @Column(nullable = false, unique = false)
     private int paginas;
     
-    @Column(nullable = false, unique = false)
     private int edicao;
     
-    @Column(nullable = false, unique = false)
     private int ano;
     
-    @Column(nullable = false, unique = false)
     private String localizacao;
     
-    @Column(nullable = true, unique = false)
     private int descricao;
     
     @Override

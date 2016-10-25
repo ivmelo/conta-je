@@ -16,14 +16,13 @@
 
 package br.edu.ifrn.biblioteka.dominio;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
+import java.util.Set;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.Singular;
 
 /**
  * Categoria entity.
@@ -33,15 +32,12 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Builder
-@Entity
 public class Categoria implements Comparable<Categoria> {
 
-	private static final long serialVersionUID = 1L;
-
-        @Id
-        private Long id;
-
 	private String nome;
+        
+        @Singular
+        private Set livros;
 
 	@Override
 	public int compareTo(Categoria c) {
