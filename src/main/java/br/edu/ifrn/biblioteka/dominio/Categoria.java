@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Jovem Exemplar.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,30 +13,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.edu.ifrn.biblioteka.dominio;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import lombok.Builder;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 /**
- *
- * @author ivanilson
+ * Categoria entity.
  */
+@Getter
+@Setter
+@ToString
+@EqualsAndHashCode
+@Builder
 @Entity
-class Categoria {
+public class Categoria implements Comparable<Categoria> {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @Id
-    private Long id;
-        
-    // Trocar por anotação @Getter
-    public Long getId() {
-        return id;
-    }
-    
-    // Trocar por anotação @Setter
-    public void setId(Long id) {
-        this.id = id;
-    }
+        @Id
+        private Long id;
+
+	private String nome;
+
+	@Override
+	public int compareTo(Categoria o) {
+		int result = 0;
+		if (this.nome != null && o.nome != null) {
+			result = this.nome.compareTo(o.nome);
+		}
+		else if (this.nome == null && o.nome == null) {
+			result = 0;
+		}
+		else if (this.nome == null) {
+			result = -1;
+		}
+		else {
+			result = +1;
+		}
+		return result;
+	}
+
 }
