@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Jovem Exemplar.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,48 +13,65 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.Builder;
 
 /**
+ * Emprestimo entity.
  *
- * @author ivanilson
+ * @author Ivanilson Melo.
+ * @author Pedro Paulo.
+ * @author Luana Lima.
+ * @author Vítor Souza.
  */
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
+@EqualsAndHashCode
 @Builder
-public class Emprestimo implements Comparable<Emprestimo>{
-        
-    private Livro livro;
-    private Usuario usuario;
-    private Date dataRetirada;
-    private Date dataEntrega;
-    
-    @Override
-    public int compareTo(Emprestimo e) {
-        int result = this.dataRetirada.compareTo(dataRetirada);
-        
-        if (result == 0) {
-            result = this.dataEntrega.compareTo(dataEntrega);
-        }
-        
-        if (result == 0) {
-            result = this.usuario.compareTo(e.usuario);
-        }
-        
-        if (result == 0) {
-            result = this.livro.compareTo(e.livro);
-        }
-        
-        return result;
-    }
-    
+@AllArgsConstructor
+@NoArgsConstructor
+public class Emprestimo implements Comparable<Emprestimo> {
+
+	private Exemplar exemplar;
+	private Usuario usuario;
+	private Date dataRetirada;
+	private Date dataEntrega;
+	private boolean entregue;
+
+	@Override
+	public int compareTo(Emprestimo e) {
+		int result = this.exemplar.compareTo(e.exemplar);
+
+		if (result == 0) {
+			this.dataRetirada.compareTo(e.dataRetirada);
+		}
+
+		if (result == 0) {
+			result = this.dataEntrega.compareTo(e.dataEntrega);
+		}
+
+		if (result == 0) {
+			result = this.usuario.compareTo(e.usuario);
+		}
+
+		if (result == 0) {
+			if (this.entregue != e.entregue) {
+				result = -1;
+			}
+		}
+
+		return result;
+	}
+
 }

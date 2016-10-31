@@ -16,10 +16,12 @@
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Set;
+import lombok.AllArgsConstructor;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
@@ -33,6 +35,8 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(exclude = {"descricao"})
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Livro implements Comparable<Livro> {
         
     private String titulo;
@@ -44,6 +48,9 @@ public class Livro implements Comparable<Livro> {
     
     @Singular
     private Set<Categoria> categorias;
+    
+    @Singular
+    private Set<Exemplar> exemplares;
     
     private int paginas;
     
