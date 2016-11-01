@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Jovem Exemplar.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.edu.ifrn.biblioteka.dominio;
 
-import java.util.Comparator;
 import java.util.Date;
 
 import lombok.AllArgsConstructor;
@@ -27,8 +27,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
+ * Exemplar entity.
  *
- * @author ivanilson
+ * @author Ivanilson Melo.
+ * @author Pedro Paulo.
+ * @author Luana Lima.
+ * @author Vítor Souza.
  */
 @Getter
 @Setter
@@ -38,31 +42,30 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Exemplar implements Comparable<Exemplar> {
-    
-    private Livro livro;
 
-    private Date dataDeCompra;
-    
-    private boolean emprestado;
-    
+	private Livro livro;
 
-    @Override
-    public int compareTo(Exemplar e) {
-        int status;
-        
-        status = this.livro.compareTo(e.livro);
-        
-        if (status == 0) {
-            status = this.dataDeCompra.compareTo(e.dataDeCompra);
-        }
-        
-        if (status == 0) {
-            if (this.emprestado != e.emprestado) {
-                status = -1;
-            }
-        }
-        
-        return status;
-    }
-    
+	private Date dataDeCompra;
+
+	private boolean emprestado;
+
+	@Override
+	public int compareTo(Exemplar e) {
+		int status;
+
+		status = this.livro.compareTo(e.livro);
+
+		if (status == 0) {
+			status = this.dataDeCompra.compareTo(e.dataDeCompra);
+		}
+
+		if (status == 0) {
+			if (this.emprestado != e.emprestado) {
+				status = -1;
+			}
+		}
+
+		return status;
+	}
+
 }
