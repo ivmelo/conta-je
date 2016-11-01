@@ -38,7 +38,6 @@ public class CategoriaTests {
 	private static final String ISBN2 = "9788439722222";
 	private static final String ISBN3 = "9788439733333";
 
-
 	@Test
 	public void mesmoCategoriaNomesIguais() {
 		assertThat(Categoria.builder().nome(CATEGORIA1).build())
@@ -53,18 +52,14 @@ public class CategoriaTests {
 
 	@Test
 	public void mesmoNomeLivrosIguais() {
-		// Criar primeiro set de livros.
-		Livro l1 = Livro.builder().isbn(ISBN1).build();
-		Livro l2 = Livro.builder().isbn(ISBN2).build();
-
 		Set<Livro> livros1 = new HashSet<>();
-		livros1.add(l1);
-		livros1.add(l2);
+		livros1.add(Livro.builder().isbn(ISBN1).build());
+		livros1.add(Livro.builder().isbn(ISBN2).build());
 
 		// Criar segundo set de livros.
 		Set<Livro> livros2 = new HashSet<>();
-		livros2.add(l1);
-		livros2.add(l2);
+		livros2.add(Livro.builder().isbn(ISBN1).build());
+		livros2.add(Livro.builder().isbn(ISBN2).build());
 
 		// Cria objetos com mesmo nome e mesmo set de livros.
 		Categoria a1 = Categoria.builder().nome(CATEGORIA1).build();
@@ -78,18 +73,14 @@ public class CategoriaTests {
 
 	@Test
 	public void mesmoNomeLivrosDiferentes() {
-		// Criar primeiro set de livros.
-		Livro l1 = Livro.builder().isbn(ISBN1).build();
-		Livro l2 = Livro.builder().isbn(ISBN2).build();
-
+		// Criar o primeiro set de livros.
 		Set<Livro> livros1 = new HashSet<>();
-		livros1.add(l1);
-		livros1.add(l2);
+		livros1.add(Livro.builder().isbn(ISBN1).build());
+		livros1.add(Livro.builder().isbn(ISBN2).build());
 
 		// Criar segundo set de livros.
-		Livro l3 = Livro.builder().isbn(ISBN3).build();
 		Set<Livro> livros2 = new HashSet<>();
-		livros2.add(l3);
+		livros2.add(Livro.builder().isbn(ISBN3).build());
 
 		// Cria objetos com mesmo nome, porém, com set de livros diferentes.
 		Categoria a1 = Categoria.builder().nome(CATEGORIA1).build();
