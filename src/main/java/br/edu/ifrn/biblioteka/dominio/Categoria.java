@@ -48,7 +48,7 @@ public class Categoria implements Comparable<Categoria> {
 	private String nome;
 
 	@Singular
-	private Set livros;
+	private Set<Livro> livros;
 
 	@Override
 	public int compareTo(Categoria c) {
