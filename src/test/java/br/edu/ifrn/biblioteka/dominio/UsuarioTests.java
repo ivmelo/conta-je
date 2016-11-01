@@ -16,15 +16,11 @@
 
 package br.edu.ifrn.biblioteka.dominio;
 
-import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
@@ -34,60 +30,56 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class UsuarioTests {
 
-	// Autor 1 
-	public static final String A1_NOME = "Pedro Paulo";
-	public static final String A1_EMAIL = "pedro@email.com";
-	public static final int A1_CPF = 432412421;
-	public static final String A1_SENHA = "SENHA123";
-	public static final String A1_TELEFONE = "24152314";
-	
+	// Usuário 1
+	public static final String U1_NOME = "Pedro Paulo";
+	public static final String U1_EMAIL = "pedro@email.com";
+	public static final int U1_CPF = 432412421;
+	public static final String U1_SENHA = "SENHA123";
+	public static final String U1_TELEFONE = "24152314";
 
-	// Autor 2
-	public static final String A2_NOME = "Vitor";
-	public static final String A2_EMAIL = "vitor@email.com";
-	public static final int A2_CPF = 533434521;
-	public static final String A2_SENHA = "123SENHA";
-	public static final String A2_TELEFONE = "1342545133";
+	// Usuário 2
+	public static final String U2_NOME = "Vitor";
+	public static final String U2_EMAIL = "vitor@email.com";
+	public static final int U2_CPF = 533434521;
+	public static final String U2_SENHA = "123SENHA";
+	public static final String U2_TELEFONE = "1342545133";
 
 	@Test
 	public void atributosIguais() {
 
 		Usuario u1 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A1_EMAIL)
-				.cpf(A1_CPF)
-				.senha(A1_SENHA)
-				.telefone(A1_TELEFONE).build();
-				
+				.nome(U1_NOME)
+				.email(U1_EMAIL)
+				.cpf(U1_CPF)
+				.senha(U1_SENHA)
+				.telefone(U1_TELEFONE).build();
 
 		Usuario u2 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A1_EMAIL)
-				.cpf(A1_CPF)
-				.senha(A1_SENHA)
-				.telefone(A1_TELEFONE).build();
-		
+				.nome(U1_NOME)
+				.email(U1_EMAIL)
+				.cpf(U1_CPF)
+				.senha(U1_SENHA)
+				.telefone(U1_TELEFONE).build();
+
 		assertThat(u1).isEqualTo(u2);
 	}
 
 	@Test
 	public void atributosIguaisCpfsDiferentes() {
 
-
 		Usuario u1 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A1_EMAIL)
-				.cpf(A1_CPF)
-				.senha(A1_SENHA)
-				.telefone(A1_TELEFONE).build();
-				
+				.nome(U1_NOME)
+				.email(U1_EMAIL)
+				.cpf(U1_CPF)
+				.senha(U1_SENHA)
+				.telefone(U1_TELEFONE).build();
 
 		Usuario u2 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A1_EMAIL)
-				.cpf(A2_CPF)
-				.senha(A1_SENHA)
-				.telefone(A1_TELEFONE).build();
+				.nome(U1_NOME)
+				.email(U1_EMAIL)
+				.cpf(U2_CPF)
+				.senha(U1_SENHA)
+				.telefone(U1_TELEFONE).build();
 
 		assertThat(u1).isNotEqualTo(u2);
 	}
@@ -96,19 +88,18 @@ public class UsuarioTests {
 	public void atributosIguaisSenhasDiferentes() {
 
 		Usuario u1 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A1_EMAIL)
-				.cpf(A1_CPF)
-				.senha(A1_SENHA)
-				.telefone(A1_TELEFONE).build();
-				
+				.nome(U1_NOME)
+				.email(U1_EMAIL)
+				.cpf(U1_CPF)
+				.senha(U1_SENHA)
+				.telefone(U1_TELEFONE).build();
 
 		Usuario u2 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A1_EMAIL)
-				.cpf(A1_CPF)
-				.senha(A2_SENHA)
-				.telefone(A1_TELEFONE).build();
+				.nome(U1_NOME)
+				.email(U1_EMAIL)
+				.cpf(U1_CPF)
+				.senha(U2_SENHA)
+				.telefone(U1_TELEFONE).build();
 
 		assertThat(u1).isNotEqualTo(u2);
 	}
@@ -117,51 +108,40 @@ public class UsuarioTests {
 	public void atributosIguaisEmailsDiferentes() {
 
 		Usuario u1 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A1_EMAIL)
-				.cpf(A1_CPF)
-				.senha(A1_SENHA)
-				.telefone(A1_TELEFONE).build();
-				
+				.nome(U1_NOME)
+				.email(U1_EMAIL)
+				.cpf(U1_CPF)
+				.senha(U1_SENHA)
+				.telefone(U1_TELEFONE).build();
 
 		Usuario u2 = Usuario.builder()
-				.nome(A1_NOME)
-				.email(A2_EMAIL)
-				.cpf(A1_CPF)
-				.senha(A1_SENHA)
-				.telefone(A1_TELEFONE).build();
+				.nome(U1_NOME)
+				.email(U2_EMAIL)
+				.cpf(U1_CPF)
+				.senha(U1_SENHA)
+				.telefone(U1_TELEFONE).build();
 
 		assertThat(u1).isNotEqualTo(u2);
 	}
-
 
 	@Test
 	public void compareTo() {
 
 		Set<Usuario> usuarios = new TreeSet<>();
 
-		Usuario pedro1 = Usuario.builder()
-				.nome(A1_NOME)
-				.cpf(A1_CPF).build();
-
-		Usuario pedro2 = Usuario.builder()
-				.nome(A1_NOME)
-				.cpf(A1_CPF).build();
+		Usuario pedro = Usuario.builder()
+				.nome(U1_NOME)
+				.cpf(U1_CPF).build();
 
 		Usuario vitor = Usuario.builder()
-				.nome(A2_NOME)
-				.cpf(A2_CPF).build();
+				.nome(U2_NOME)
+				.cpf(U2_CPF).build();
 
-		usuarios.add(pedro2);
 		usuarios.add(vitor);
-		usuarios.add(pedro1);
+		usuarios.add(pedro);
 
-		// It should order by Title, followed by ISBN.
-		assertThat(usuarios.toArray()[0]).isEqualTo(pedro1);
-		assertThat(usuarios.toArray()[1]).isEqualTo(pedro2);
-		assertThat(usuarios.toArray()[2]).isEqualTo(vitor);
+		// It should order by name, followed by CPF.
+		assertThat(usuarios.iterator().next()).isEqualTo(pedro);
 	}
-
-	
 
 }
