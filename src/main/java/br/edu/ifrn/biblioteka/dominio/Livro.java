@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Jovem Exemplar.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,51 +13,63 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Set;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
 
 /**
+ * Livro entity.
  *
- * @author ivanilson
+ * @author Ivanilson Melo.
+ * @author Pedro Paulo.
+ * @author Luana Lima.
+ * @author Vítor Souza.
  */
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode(exclude = {"descricao"})
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Livro implements Comparable<Livro> {
-        
-    private String titulo;
-    
-    private String isbn;
-    
-    @Singular
-    private Set<Autor> autores;
-    
-    @Singular
-    private Set<Categoria> categorias;
-    
-    private int paginas;
-    
-    private int edicao;
-    
-    private int ano;
-    
-    private String localizacao;
-    
-    private int descricao;
-    
-    @Override
-    public int compareTo(Livro l) {
-        return this.isbn.compareTo(l.isbn);
-    }
-    
+
+	private String titulo;
+
+	private String isbn;
+
+	@Singular
+	private Set<Autor> autores;
+
+	@Singular
+	private Set<Categoria> categorias;
+
+	@Singular
+	private Set<Exemplar> exemplares;
+
+	private int paginas;
+
+	private int edicao;
+
+	private int ano;
+
+	private String localizacao;
+
+	private int descricao;
+
+	@Override
+	public int compareTo(Livro l) {
+		return this.isbn.compareTo(l.isbn);
+	}
+
 }

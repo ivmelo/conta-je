@@ -17,31 +17,42 @@
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Set;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import lombok.Singular;
+import lombok.ToString;
 
 /**
  * Categoria entity.
+ *
+ *
+ * @author Ivanilson Melo.
+ * @author Pedro Paulo.
+ * @author Luana Lima.
+ * @author Vítor Souza.
  */
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Categoria implements Comparable<Categoria> {
 
 	private String nome;
-        
-        @Singular
-        private Set livros;
+
+	@Singular
+	private Set livros;
 
 	@Override
 	public int compareTo(Categoria c) {
-            return this.nome.compareTo(c.nome);
+		return this.nome.compareTo(c.nome);
 	}
 
 }

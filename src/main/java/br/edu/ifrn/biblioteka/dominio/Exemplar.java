@@ -17,7 +17,6 @@
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Date;
-import java.util.Set;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,11 +25,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.Singular;
 import lombok.ToString;
 
 /**
- * Usuario entity.
+ * Exemplar entity.
  *
  * @author Ivanilson Melo.
  * @author Pedro Paulo.
@@ -39,26 +37,34 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
+@EqualsAndHashCode
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
-public class Usuario implements Comparable<Usuario> {
+public class Exemplar implements Comparable<Exemplar> {
 
-	private String nome;
-	private String email;
-	private int cpf;
-	private String senha;
-	private String telefone;
-	private Date dataNascimento;
+	private Livro livro;
 
-	@Singular
-	private Set<Emprestimo> emprestimos;
+	private Date dataDeCompra;
+
+	private boolean emprestado;
 
 	@Override
-	public int compareTo(Usuario u) {
-		return this.cpf - u.cpf;
+	public int compareTo(Exemplar e) {
+		int status;
+
+		status = this.livro.compareTo(e.livro);
+
+		if (status == 0) {
+			status = this.dataDeCompra.compareTo(e.dataDeCompra);
+		}
+
+		if (status == 0 && this.emprestado != e.emprestado) {
+			status = -1;
+		}
+
+		return status;
 	}
 
 }
