@@ -58,7 +58,13 @@ public class Usuario implements Comparable<Usuario> {
 
 	@Override
 	public int compareTo(Usuario u) {
-		return this.cpf - u.cpf;
+		int status = this.nome.compareTo(u.nome);
+
+		if (status == 0) {
+			status = this.cpf - u.cpf;
+		}
+
+		return status;
 	}
 
 }
