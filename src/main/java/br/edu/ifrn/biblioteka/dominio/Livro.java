@@ -38,7 +38,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(exclude = {"descricao"})
+@EqualsAndHashCode(exclude = {"descricao", "localizacao"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -65,11 +65,19 @@ public class Livro implements Comparable<Livro> {
 
 	private String localizacao;
 
-	private int descricao;
+	private String descricao;
 
 	@Override
 	public int compareTo(Livro l) {
-		return this.isbn.compareTo(l.isbn);
+		int status;
+
+		status = this.titulo.compareTo(l.titulo);
+
+		if (status == 0) {
+			status = this.isbn.compareTo(l.isbn);
+		}
+
+		return status;
 	}
 
 }
