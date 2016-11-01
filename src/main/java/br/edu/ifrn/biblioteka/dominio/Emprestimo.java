@@ -18,6 +18,7 @@ package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Date;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -39,7 +40,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Builder
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class Emprestimo implements Comparable<Emprestimo> {
 
@@ -65,10 +66,8 @@ public class Emprestimo implements Comparable<Emprestimo> {
 			result = this.usuario.compareTo(e.usuario);
 		}
 
-		if (result == 0) {
-			if (this.entregue != e.entregue) {
-				result = -1;
-			}
+		if (result == 0 && this.entregue != e.entregue) {
+			result = -1;
 		}
 
 		return result;

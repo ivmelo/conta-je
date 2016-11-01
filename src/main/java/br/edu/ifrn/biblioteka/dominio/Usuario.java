@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Jovem Exemplar.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,40 +13,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Date;
 import java.util.Set;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
 
 /**
+ * Usuario entity.
  *
- * @author ivanilson
+ * @author Ivanilson Melo.
+ * @author Pedro Paulo.
+ * @author Luana Lima.
+ * @author Vítor Souza.
  */
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
 @Builder
-public class Usuario implements Comparable<Usuario>{
-    
-    private String nome;
-    private String email;
-    private int cpf;
-    private String senha;
-    private String telefone;
-    private Date dataNascimento;
-    
-    @Singular
-    private Set<Emprestimo> emprestimos;
-    
-    @Override
-    public int compareTo(Usuario u) {
-        return this.cpf - u.cpf;
-    }
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+public class Usuario implements Comparable<Usuario> {
+
+	private String nome;
+	private String email;
+	private int cpf;
+	private String senha;
+	private String telefone;
+	private Date dataNascimento;
+
+	@Singular
+	private Set<Emprestimo> emprestimos;
+
+	@Override
+	public int compareTo(Usuario u) {
+		return this.cpf - u.cpf;
+	}
+
 }
