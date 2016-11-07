@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Jovem Exemplar.
+ * Copyright 2016-2016 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,136 +13,142 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import org.junit.Test;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
+ * Teste da classe Exemplar.
  *
  * @author Paulo Vitor Souza
  */
-
+@SuppressWarnings("CPD")
 public class ExemplarTests {
 
-    // Gone Girl by Gillian Flynn.
-    public static final String GG_TITULO = "Gone Girl";
-    public static final String GG_ISBN = "9780307588364";
-    public static final String GG_ISBN2 = "9788439726821";
-    public static final int GG_PAGINAS = 432;
-    public static final int GG_EDICAO = 1;
-    public static final int GG_ANO = 2012;
-    public static final String GG_LOCALIZACAO = "BA123XFDK13-1";
-    public static final String GG_DESCRICAO = "Gone Girl is a thriller novel by the writer Gillian Flynn. It was published by Crown Publishing Group in June 2012. The novel soon made the New York Times Best Seller list. The novel's suspense comes from the main character, Nick Dunne, and whether he is involved in the disappearance of his wife.";
-    public static final String GG_AUTOR = "Gillian Flynn";
-    public static final String GG_CATEGORIA = "Thriller";
+	// The Alchemist by Paulo Coelho.
+	public static final String TA_TITULO = "The Alchemist";
+	public static final String TA_ISBN = "0062502174";
+	public static final int TA_PAGINAS = 163;
+	public static final int TA_EDICAO = 1;
+	public static final int TA_ANO = 1993;
+	public static final String TA_LOCALIZACAO = "BA123XZFX13-1";
+	public static final String TA_DESCRICAO = "The Alchemist (Portuguese: O Alquimista) is a novel by Brazilian author Paulo Coelho which was first published in 1988. Originally written in Portuguese, it has been translated into at least 67 languages as of October 2009.[1] An allegorical novel, The Alchemist follows a young Andalusian shepherd in his journey to Egypt, after having a recurring dream of finding treasure there.";
+	public static final String TA_AUTOR = "Paulo Coelho";
+	public static final String TA_CATEGORIA1 = "Adventure";
+	public static final String TA_CATEGORIA2 = "Fantasy";
 
-    // The Alchemist by Paulo Coelho.
-    public static final String TA_TITULO = "The Alchemist";
-    public static final String TA_ISBN = "0062502174";
-    public static final int TA_PAGINAS = 163;
-    public static final int TA_EDICAO = 1;
-    public static final int TA_ANO = 1993;
-    public static final String TA_LOCALIZACAO = "BA123XZFX13-1";
-    public static final String TA_DESCRICAO = "The Alchemist (Portuguese: O Alquimista) is a novel by Brazilian author Paulo Coelho which was first published in 1988. Originally written in Portuguese, it has been translated into at least 67 languages as of October 2009.[1] An allegorical novel, The Alchemist follows a young Andalusian shepherd in his journey to Egypt, after having a recurring dream of finding treasure there.";
-    public static final String TA_AUTOR = "Paulo Coelho";
-    public static final String TA_CATEGORIA1 = "Adventure";
-    public static final String TA_CATEGORIA2 = "Fantasy";
+	// Gone Girl by Gillian Flynn.
+	public static final String GG_TITULO = "Gone Girl";
+	public static final String GG_ISBN = "9780307588364";
+	public static final String GG_ISBN2 = "9788439726821";
+	public static final int GG_PAGINAS = 432;
+	public static final int GG_EDICAO = 1;
+	public static final int GG_ANO = 2012;
+	public static final String GG_LOCALIZACAO = "BA123XFDK13-1";
+	public static final String GG_DESCRICAO = "Gone Girl is a thriller novel by the writer Gillian Flynn. It was published by Crown Publishing Group in June 2012. The novel soon made the New York Times Best Seller list. The novel's suspense comes from the main character, Nick Dunne, and whether he is involved in the disappearance of his wife.";
+	public static final String GG_AUTOR = "Gillian Flynn";
+	public static final String GG_CATEGORIA = "Thriller";
 
-    private Livro getGoneGirlBookInstance() {
-	Autor gillian = Autor.builder().nome(GG_AUTOR).build();
-	Categoria thriller = Categoria.builder().nome(GG_CATEGORIA).build();
+	Livro l1 = getGoneGirlBookInstance();
+	Livro l2 = getTheAlchemistBookInstance();
 
-	Set<Autor> autores = new HashSet<>();
-	Set<Categoria> categorias = new HashSet<>();
+	private Livro getGoneGirlBookInstance() {
+		Categoria thriller = Categoria.builder().nome(GG_CATEGORIA).build();
+		Autor gillian = Autor.builder().nome(GG_AUTOR).build();
 
-	autores.add(gillian);
-	categorias.add(thriller);
+		Set<Categoria> categorias = new HashSet<>();
+		Set<Autor> autores = new HashSet<>();
 
-	return Livro.builder()
-		.titulo(GG_TITULO)
-		.isbn(GG_ISBN)
-		.autores(autores)
-		.categorias(categorias)
-		.paginas(GG_PAGINAS)
-		.edicao(GG_EDICAO)
-		.ano(GG_ANO)
-		.localizacao(GG_LOCALIZACAO)
-		.descricao(GG_DESCRICAO).build();
-    }
+		categorias.add(thriller);
+		autores.add(gillian);
 
-    private Livro getTheAlchemistBookInstance() {
-	Autor paulo = Autor.builder().nome(TA_AUTOR).build();
-	Categoria adventure = Categoria.builder().nome(TA_CATEGORIA1).build();
-	Categoria fantasy = Categoria.builder().nome(TA_CATEGORIA2).build();
+		return Livro.builder()
+			.titulo(GG_TITULO)
+			.isbn(GG_ISBN)
+			.autores(autores)
+			.categorias(categorias)
+			.paginas(GG_PAGINAS)
+			.edicao(GG_EDICAO)
+			.ano(GG_ANO)
+			.localizacao(GG_LOCALIZACAO)
+			.descricao(GG_DESCRICAO).build();
+	}
 
-	Set<Autor> autores = new HashSet<>();
-	Set<Categoria> categorias = new HashSet<>();
+	private Livro getTheAlchemistBookInstance() {
+		Categoria fantasy = Categoria.builder().nome(TA_CATEGORIA2).build();
+		Categoria adventure = Categoria.builder().nome(TA_CATEGORIA1).build();
+		Autor paulo = Autor.builder().nome(TA_AUTOR).build();
 
-	autores.add(paulo);
-	categorias.add(adventure);
-	categorias.add(fantasy);
+		Set<Categoria> categorias = new HashSet<>();
+		Set<Autor> autores = new HashSet<>();
 
-	return Livro.builder()
-		.titulo(TA_TITULO)
-		.isbn(TA_ISBN)
-		.autores(autores)
-		.categorias(categorias)
-		.paginas(TA_PAGINAS)
-		.edicao(TA_EDICAO)
-		.ano(TA_ANO)
-		.localizacao(TA_LOCALIZACAO)
-		.descricao(TA_DESCRICAO).build();
-    }
+		categorias.add(adventure);
+		categorias.add(fantasy);
 
-    Livro l1 = getGoneGirlBookInstance();
-    Livro l2 = getTheAlchemistBookInstance();
+		autores.add(paulo);
 
-    @Test
-    public void mesmoExemplarLivrosIguais() {
+		return Livro.builder()
+			.titulo(TA_TITULO)
+			.isbn(TA_ISBN)
+			.autores(autores)
+			.categorias(categorias)
+			.paginas(TA_PAGINAS)
+			.edicao(TA_EDICAO)
+			.ano(TA_ANO)
+			.localizacao(TA_LOCALIZACAO)
+			.descricao(TA_DESCRICAO).build();
+	}
 
-	Exemplar exemplar1 = Exemplar.builder()
-		.livro(l1)
-		.dataDeCompra(new Date())
-		.emprestado(true).build();
+	@Test
+	public void mesmoExemplarLivrosIguais() {
+		Exemplar exemplar1 = Exemplar.builder()
+			.livro(l1)
+			.dataDeCompra(new Date())
+			.emprestado(true).build();
 
-	Exemplar exemplar2 = Exemplar.builder()
-		.livro(l1)
-		.dataDeCompra(new Date())
-		.emprestado(true).build();
+		Exemplar exemplar2 = Exemplar.builder()
+			.livro(l1)
+			.dataDeCompra(new Date())
+			.emprestado(true).build();
 
-	assertThat(exemplar1).isEqualTo(exemplar2);
-    }
+		assertThat(exemplar1).isEqualTo(exemplar2);
+	}
 
-    @Test
-    public void exemplaresDiferentesLivrosDiferentes() {
-	Exemplar exemplar1 = Exemplar.builder()
-		.livro(l1)
-		.dataDeCompra(new Date())
-		.emprestado(true).build();
+	@Test
+	public void exemplaresDiferentesLivrosDiferentes() {
+		Exemplar exemplar1 = Exemplar.builder()
+			.livro(l1)
+			.dataDeCompra(new Date())
+			.emprestado(true).build();
 
-	Exemplar exemplar2 = Exemplar.builder()
-		.livro(l2)
-		.dataDeCompra(new Date())
-		.emprestado(true).build();
+		Exemplar exemplar2 = Exemplar.builder()
+			.livro(l2)
+			.dataDeCompra(new Date())
+			.emprestado(true).build();
 
-	assertThat(exemplar1).isNotEqualTo(exemplar2);
-    }
+		assertThat(exemplar1).isNotEqualTo(exemplar2);
+	}
 
-    @Test
-    public void exemplaresDiferentesStatusDiferentes() {
-	Exemplar exemplar1 = Exemplar.builder()
-		.livro(l2)
-		.dataDeCompra(new Date())
-		.emprestado(true).build();
+	@Test
+	public void exemplaresDiferentesStatusDiferentes() {
+		Exemplar exemplar1 = Exemplar.builder()
+			.livro(l2)
+			.dataDeCompra(new Date())
+			.emprestado(true).build();
 
-	Exemplar exemplar2 = Exemplar.builder()
-		.livro(l2)
-		.dataDeCompra(new Date())
-		.emprestado(false).build();
-    }
+		Exemplar exemplar2 = Exemplar.builder()
+			.livro(l2)
+			.dataDeCompra(new Date())
+			.emprestado(false).build();
+
+		assertThat(exemplar1).isNotEqualTo(exemplar2);
+	}
 
 }
