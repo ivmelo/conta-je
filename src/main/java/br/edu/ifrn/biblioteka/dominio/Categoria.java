@@ -39,7 +39,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"nome"})
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor

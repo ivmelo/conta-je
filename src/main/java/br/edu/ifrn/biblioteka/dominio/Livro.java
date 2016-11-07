@@ -38,7 +38,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode(exclude = {"descricao", "localizacao"})
+@EqualsAndHashCode(of = {"isbn", "titulo"})
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor

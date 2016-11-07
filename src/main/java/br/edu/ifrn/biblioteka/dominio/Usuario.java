@@ -39,7 +39,7 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"cpf", "nome"})
 @ToString
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)

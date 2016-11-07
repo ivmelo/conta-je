@@ -89,7 +89,7 @@ public class CategoriaTests {
 		Categoria a2 = Categoria.builder().nome(CATEGORIA1).build();
 		a2.setLivros(livros2);
 
-		assertThat(a1).isNotEqualTo(a2);
+		assertThat(a1).isEqualTo(a2);
 	}
 
 	@Test

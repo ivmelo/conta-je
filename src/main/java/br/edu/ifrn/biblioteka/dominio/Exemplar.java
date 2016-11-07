@@ -38,7 +38,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(of = {"codBarras", "livro"})
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
@@ -50,21 +50,20 @@ public class Exemplar implements Comparable<Exemplar> {
 
 	private boolean emprestado;
 
+	private String codBarras;
+
 	@Override
 	public int compareTo(Exemplar e) {
+		// Ordena por nome do livro em ordem alfabética
+		// e em seguida por código de barrras.
 		int status;
 
 		status = this.livro.compareTo(e.livro);
 
 		if (status == 0) {
-			status = this.dataDeCompra.compareTo(e.dataDeCompra);
-		}
-
-		if (status == 0 && this.emprestado != e.emprestado) {
-			status = -1;
+			status = this.codBarras.compareTo(e.codBarras);
 		}
 
 		return status;
 	}
-
 }

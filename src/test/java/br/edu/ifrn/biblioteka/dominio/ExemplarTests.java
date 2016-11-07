@@ -19,6 +19,7 @@ package br.edu.ifrn.biblioteka.dominio;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -55,6 +56,11 @@ public class ExemplarTests {
 	public static final String GG_DESCRICAO = "Gone Girl is a thriller novel by the writer Gillian Flynn. It was published by Crown Publishing Group in June 2012. The novel soon made the New York Times Best Seller list. The novel's suspense comes from the main character, Nick Dunne, and whether he is involved in the disappearance of his wife.";
 	public static final String GG_AUTOR = "Gillian Flynn";
 	public static final String GG_CATEGORIA = "Thriller";
+
+	// Códigos de Barra
+	public static final String C1 = "ABC1000";
+	public static final String C2 = "ABC2000";
+	public static final String C3 = "ABC3000";
 
 	Livro l1 = getGoneGirlBookInstance();
 	Livro l2 = getTheAlchemistBookInstance();
@@ -107,48 +113,84 @@ public class ExemplarTests {
 	}
 
 	@Test
-	public void mesmoExemplarLivrosIguais() {
+	public void mesmoLivroMesmoCodigoDeBarra() {
 		Exemplar exemplar1 = Exemplar.builder()
 			.livro(l1)
 			.dataDeCompra(new Date())
-			.emprestado(true).build();
+			.emprestado(true)
+			.codBarras(C1).build();
 
 		Exemplar exemplar2 = Exemplar.builder()
 			.livro(l1)
 			.dataDeCompra(new Date())
-			.emprestado(true).build();
+			.emprestado(true)
+			.codBarras(C1).build();
 
 		assertThat(exemplar1).isEqualTo(exemplar2);
 	}
 
 	@Test
-	public void exemplaresDiferentesLivrosDiferentes() {
+	public void mesmoLivroCodigosDiferentes() {
 		Exemplar exemplar1 = Exemplar.builder()
 			.livro(l1)
 			.dataDeCompra(new Date())
-			.emprestado(true).build();
+			.emprestado(true)
+			.codBarras(C1).build();
 
 		Exemplar exemplar2 = Exemplar.builder()
-			.livro(l2)
+			.livro(l1)
 			.dataDeCompra(new Date())
-			.emprestado(true).build();
+			.emprestado(true)
+			.codBarras(C2).build();
 
 		assertThat(exemplar1).isNotEqualTo(exemplar2);
 	}
 
 	@Test
-	public void exemplaresDiferentesStatusDiferentes() {
+	public void mesmoCodigoLivrosDiferentes() {
 		Exemplar exemplar1 = Exemplar.builder()
-			.livro(l2)
+			.livro(l1)
 			.dataDeCompra(new Date())
-			.emprestado(true).build();
+			.emprestado(true)
+			.codBarras(C1).build();
 
 		Exemplar exemplar2 = Exemplar.builder()
 			.livro(l2)
 			.dataDeCompra(new Date())
-			.emprestado(false).build();
+			.emprestado(true)
+			.codBarras(C1).build();
 
 		assertThat(exemplar1).isNotEqualTo(exemplar2);
 	}
 
+	@Test
+	public void compareTo() {
+		Exemplar exemplar1 = Exemplar.builder()
+			.livro(l1)
+			.dataDeCompra(new Date())
+			.emprestado(true)
+			.codBarras(C1).build();
+
+		Exemplar exemplar2 = Exemplar.builder()
+			.livro(l1)
+			.dataDeCompra(new Date())
+			.emprestado(true)
+			.codBarras(C2).build();
+
+		Exemplar exemplar3 = Exemplar.builder()
+			.livro(l2)
+			.dataDeCompra(new Date())
+			.emprestado(true)
+			.codBarras(C3).build();
+
+		Set<Exemplar> exemplares = new TreeSet<>();
+
+		exemplares.add(exemplar3);
+		exemplares.add(exemplar2);
+		exemplares.add(exemplar1);
+
+		assertThat(exemplares.toArray()[0]).isEqualTo(exemplar1);
+		assertThat(exemplares.toArray()[1]).isEqualTo(exemplar2);
+		assertThat(exemplares.toArray()[2]).isEqualTo(exemplar3);
+	}
 }

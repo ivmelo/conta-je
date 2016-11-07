@@ -85,7 +85,7 @@ public class UsuarioTests {
 	}
 
 	@Test
-	public void atributosIguaisSenhasDiferentes() {
+	public void atributosIguaisNomesDiferentes() {
 
 		Usuario u1 = Usuario.builder()
 				.nome(U1_NOME)
@@ -95,17 +95,17 @@ public class UsuarioTests {
 				.telefone(U1_TELEFONE).build();
 
 		Usuario u2 = Usuario.builder()
-				.nome(U1_NOME)
+				.nome(U2_NOME)
 				.email(U1_EMAIL)
 				.cpf(U1_CPF)
-				.senha(U2_SENHA)
+				.senha(U1_SENHA)
 				.telefone(U1_TELEFONE).build();
 
 		assertThat(u1).isNotEqualTo(u2);
 	}
 
 	@Test
-	public void atributosIguaisEmailsDiferentes() {
+	public void nomeCpfIguaisAtributosDiferentes() {
 
 		Usuario u1 = Usuario.builder()
 				.nome(U1_NOME)
@@ -118,10 +118,10 @@ public class UsuarioTests {
 				.nome(U1_NOME)
 				.email(U2_EMAIL)
 				.cpf(U1_CPF)
-				.senha(U1_SENHA)
-				.telefone(U1_TELEFONE).build();
+				.senha(U2_SENHA)
+				.telefone(U2_TELEFONE).build();
 
-		assertThat(u1).isNotEqualTo(u2);
+		assertThat(u1).isEqualTo(u2);
 	}
 
 	@Test
