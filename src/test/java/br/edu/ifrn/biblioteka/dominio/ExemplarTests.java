@@ -25,6 +25,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Paulo Vitor Souza
  */
+
 public class ExemplarTests {
 
     // Gone Girl by Gillian Flynn.
@@ -115,7 +116,7 @@ public class ExemplarTests {
 
 	assertThat(exemplar1).isEqualTo(exemplar2);
     }
-    
+
     @Test
     public void exemplaresDiferentesLivrosDiferentes() {
 	Exemplar exemplar1 = Exemplar.builder()
@@ -127,12 +128,12 @@ public class ExemplarTests {
 		.livro(l2)
 		.dataDeCompra(new Date())
 		.emprestado(true).build();
-	
+
 	assertThat(exemplar1).isNotEqualTo(exemplar2);
     }
-    
+
     @Test
-    public void exemplaresDiferentesSatusDiferentes() {
+    public void exemplaresDiferentesStatusDiferentes() {
 	Exemplar exemplar1 = Exemplar.builder()
 		.livro(l2)
 		.dataDeCompra(new Date())
