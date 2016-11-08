@@ -30,7 +30,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  *
  * @author Paulo Vitor Souza
  */
-@SuppressWarnings("CPD")
 public class EmprestimoTests {
 
 	// Gone Girl by Gillian Flynn.
@@ -146,18 +145,21 @@ public class EmprestimoTests {
 
 	@Test
 	public void mesmoEmprestimoExemplaresIguais() {
+		Date dataRetirada = new Date();
+		Date dataEntrega = new Date();
+		
 		Emprestimo emprestimo1 = Emprestimo.builder()
 			.exemplar(exemplar1)
 			.usuario(u1)
-			.dataRetirada(new Date())
-			.dataEntrega(new Date())
+			.dataRetirada(dataRetirada)
+			.dataEntrega(dataEntrega)
 			.entregue(true).build();
 
 		Emprestimo emprestimo2 = Emprestimo.builder()
 			.exemplar(exemplar1)
 			.usuario(u1)
-			.dataRetirada(new Date())
-			.dataEntrega(new Date())
+			.dataRetirada(dataRetirada)
+			.dataEntrega(dataEntrega)
 			.entregue(true).build();
 
 		assertThat(emprestimo1).isEqualTo(emprestimo2);
