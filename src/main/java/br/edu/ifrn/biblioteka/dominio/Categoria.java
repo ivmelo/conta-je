@@ -16,7 +16,14 @@
 
 package br.edu.ifrn.biblioteka.dominio;
 
+import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +33,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import org.springframework.data.annotation.Id;
 
 /**
  * Categoria entity.
@@ -43,11 +51,22 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Categoria implements Comparable<Categoria> {
-
+@Entity
+@SequenceGenerator(sequenceName = "seq_categoria", name = "ID_SEQUENCE", allocationSize = 1)
+ public class Categoria implements Comparable<Categoria>, Serializable {
+ 
+ 	private static final long serialVersionUID = 1L;
+ 
+ 	@Id
+ 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	@javax.persistence.Id
+ 	private Long id;
+ 
+	@Column(nullable = false, unique = true)
 	private String nome;
 
 	@Singular
+	@ManyToMany(mappedBy = "categorias")
 	private Set<Livro> livros;
 
 	@Override
