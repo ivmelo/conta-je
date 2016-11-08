@@ -26,7 +26,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+
+import org.hibernate.annotations.NaturalId;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,7 +39,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
-import org.hibernate.annotations.NaturalId;
 
 /**
  * Livro entity.
@@ -78,8 +80,9 @@ public class Livro implements Comparable<Livro>, Serializable {
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Categoria> categorias;
 
-//	@Singular
-//	private Set<Exemplar> exemplares;
+	@Singular
+	@OneToMany(mappedBy = "livro")
+	private Set<Exemplar> exemplares;
 
 	@Column(nullable = true, unique = false)
 	private int paginas;

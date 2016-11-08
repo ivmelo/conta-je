@@ -16,6 +16,7 @@
 
 package br.edu.ifrn.biblioteka.dominio;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -52,7 +53,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @Entity
 @SequenceGenerator(sequenceName = "seq_autor", name = "ID_SEQUENCE", allocationSize = 1)
-public class Autor implements Comparable<Autor> {
+public class Autor implements Comparable<Autor>, Serializable {
 
 	private static final long serialVersionUID = 1L;
 
