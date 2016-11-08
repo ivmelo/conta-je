@@ -16,8 +16,19 @@
 
 package br.edu.ifrn.biblioteka.dominio;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -28,6 +39,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import org.hibernate.annotations.NaturalId;
 
 /**
  * Usuario entity.
@@ -44,16 +56,38 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
-public class Usuario implements Comparable<Usuario> {
+@Entity
+@SequenceGenerator(sequenceName = "seq_usuario", name = "ID_SEQUENCE", allocationSize = 1)
+public class Usuario implements Comparable<Usuario>, Serializable {
 
-	private String nome;
-	private String email;
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private long id;
+
+	@NaturalId
+	@Column(nullable = false, unique = true)
 	private int cpf;
+
+	@Column(nullable = false, unique = false)
+	private String nome;
+
+	@Column(nullable = false, unique = true)
+	private String email;
+
+	@Column(nullable = true, unique = false)
 	private String senha;
+
+	@Column(nullable = false, unique = false)
 	private String telefone;
+
+	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataNascimento;
 
 	@Singular
+	@OneToMany(mappedBy = "usuario")
 	private Set<Emprestimo> emprestimos;
 
 	@Override

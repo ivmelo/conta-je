@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -21,15 +21,15 @@
         <duplicate.ignoredClassPattern>javax.persistence.(SynchronizationType|Persistence(Context|ContextType|Contexts|Property|Unit|Units))</duplicate.ignoredClassPattern>
         <duplicate.ignoredResourcePattern>(changelog.txt|application.yml)</duplicate.ignoredResourcePattern>
         <pmd.excludeFromFailureFile>${check.dir}/pmd/pmd-exclude.properties</pmd.excludeFromFailureFile>
-        <!-- <checkstyle.excludes>br/edu/ifrn/conta/dominio/Q*</checkstyle.excludes> -->
+        <checkstyle.excludes>br/edu/ifrn/biblioteka/dominio/Q*</checkstyle.excludes>
         <!--<cobertura.totalLineRate>33</cobertura.totalLineRate>-->
-		<cobertura.totalLineRate>0</cobertura.totalLineRate>
+        <cobertura.totalLineRate>0</cobertura.totalLineRate>
         <!--<cobertura.packageLineRate>33</cobertura.packageLineRate>-->
         <cobertura.packageLineRate>0</cobertura.packageLineRate>
         <cobertura.lineRate>0</cobertura.lineRate>
-		<!--<cobertura.totalBranchRate>48</cobertura.totalBranchRate>-->
+        <!--<cobertura.totalBranchRate>48</cobertura.totalBranchRate>-->
         <cobertura.totalBranchRate>0</cobertura.totalBranchRate>
-<!--        <cobertura.packageBranchRate>50</cobertura.packageBranchRate>-->
+        <!--<cobertura.packageBranchRate>50</cobertura.packageBranchRate>-->
         <cobertura.packageBranchRate>0</cobertura.packageBranchRate>
         <cobertura.branchRate>0</cobertura.branchRate>
 
@@ -169,14 +169,34 @@
                 <configuration>
                     <instrumentation>
                         <ignores>
-                            <!--<ignore>br.edu.ifrn.conta.dominio.Q*</ignore>-->
+                            <ignore>br.edu.ifrn.biblioteka.dominio.Q*</ignore>
                         </ignores>
                         <excludes>
-                            <!--<exclude>br/edu/ifrn/conta/dominio/QCategoria.class</exclude>-->
+                            <exclude>br/edu/ifrn/biblioteka/dominio/QCategoria.class</exclude>
                         </excludes>
                     </instrumentation>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <configuration>
+                    <excludeRoots>
+                        <excludeRoot>${project.basedir}/target/generated-sources/java</excludeRoot>
+                    </excludeRoots>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                            <!-- disabled for now <goal>cpd-check</goal> -->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
