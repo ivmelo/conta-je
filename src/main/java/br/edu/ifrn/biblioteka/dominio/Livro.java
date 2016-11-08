@@ -18,8 +18,8 @@ package br.edu.ifrn.biblioteka.dominio;
 
 import java.io.Serializable;
 import java.util.Set;
-import javax.persistence.CascadeType;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -70,8 +70,9 @@ public class Livro implements Comparable<Livro>, Serializable {
 	@Column(nullable = false, unique = true)
 	private String isbn;
 
-//	@Singular
-//	private Set<Autor> autores;
+	@Singular
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<Autor> autores;
 
 	@Singular
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
