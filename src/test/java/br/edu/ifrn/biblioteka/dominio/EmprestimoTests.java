@@ -147,7 +147,7 @@ public class EmprestimoTests {
 	public void mesmoEmprestimoExemplaresIguais() {
 		Date dataRetirada = new Date();
 		Date dataEntrega = new Date();
-		
+
 		Emprestimo emprestimo1 = Emprestimo.builder()
 			.exemplar(exemplar1)
 			.usuario(u1)
