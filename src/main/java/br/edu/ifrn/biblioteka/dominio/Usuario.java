@@ -18,6 +18,13 @@ package br.edu.ifrn.biblioteka.dominio;
 
 import java.util.Date;
 import java.util.Set;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -42,18 +49,38 @@ import lombok.ToString;
 @EqualsAndHashCode(of = {"cpf", "nome"})
 @ToString
 @Builder
+@Entity
+@SequenceGenerator(sequenceName = "seq_usuario", name = "ID_SEQUENCE", allocationSize = 1)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
 public class Usuario implements Comparable<Usuario> {
+    
+	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private Long id;
+	
+	@Column(nullable = false)
 	private String nome;
+	
+	@Column(nullable = false)
 	private String email;
+	
+	@Column(nullable = false)
 	private int cpf;
+	
+	@Column(nullable = false)
 	private String senha;
+	
+	@Column(nullable = false, unique = true)
 	private String telefone;
+	
+	@Column(nullable = false, unique = true)
 	private Date dataNascimento;
 
 	@Singular
+	@OneToMany(mappedBy = "usuario")
 	private Set<Emprestimo> emprestimos;
 
 	@Override
