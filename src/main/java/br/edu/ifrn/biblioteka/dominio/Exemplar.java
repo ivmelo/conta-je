@@ -18,8 +18,9 @@ package br.edu.ifrn.biblioteka.dominio;
 
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
+import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
@@ -27,7 +28,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -37,6 +41,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.Setter;
+import lombok.Singular;
 import lombok.ToString;
 import org.hibernate.annotations.NaturalId;
 
@@ -68,14 +73,19 @@ public class Exemplar implements Comparable<Exemplar>, Serializable {
 	@NaturalId
 	@Column(nullable = false, unique = true)
 	private String codBarras;
-	
+
 	@NonNull
 	@ManyToOne
 	@JoinColumn(name = "id", foreignKey = @ForeignKey(name = "EXEMPLAR_ID_FK"))
 	private Livro livro;
 
+	@Temporal(TemporalType.DATE)
 	@Column(nullable = false, unique = false)
 	private Date dataDeCompra;
+
+	@Singular
+	@OneToMany(mappedBy = "exemplar")
+	private Set<Emprestimo> emprestimos;
 
 	@Column(nullable = false, unique = false)
 	private boolean emprestado;

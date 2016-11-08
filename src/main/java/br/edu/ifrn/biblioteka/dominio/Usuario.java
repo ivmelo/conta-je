@@ -25,7 +25,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -77,11 +80,13 @@ public class Usuario implements Comparable<Usuario>, Serializable {
 	@Column(nullable = false, unique = false)
 	private String telefone;
 
-	@Column(nullable = false, unique = false)
+	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataNascimento;
 
-//	@Singular
-//	private Set<Emprestimo> emprestimos;
+	@Singular
+	@OneToMany(mappedBy = "usuario")
+	private Set<Emprestimo> emprestimos;
 
 	@Override
 	public int compareTo(Usuario u) {
