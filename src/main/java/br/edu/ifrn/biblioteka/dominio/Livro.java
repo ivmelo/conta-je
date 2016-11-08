@@ -65,12 +65,12 @@ public class Livro implements Comparable<Livro>, Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
 	private Long id;
 
-	@Column(nullable = false, unique = false)
-	private String titulo;
-
 	@NaturalId
 	@Column(nullable = false, unique = true)
 	private String isbn;
+
+	@Column(nullable = false, unique = false)
+	private String titulo;
 
 	@Singular
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})

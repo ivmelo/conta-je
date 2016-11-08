@@ -39,6 +39,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+import org.hibernate.annotations.NaturalId;
 
 /**
  * Usuario entity.
@@ -65,6 +66,7 @@ public class Usuario implements Comparable<Usuario>, Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
 	private long id;
 
+	@NaturalId
 	@Column(nullable = false, unique = true)
 	private int cpf;
 
