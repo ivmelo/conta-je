@@ -16,7 +16,17 @@
 
 package br.edu.ifrn.biblioteka.dominio;
 
+import java.io.Serializable;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +36,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Singular;
 import lombok.ToString;
+
+import org.hibernate.annotations.NaturalId;
 
 /**
  * Livro entity.
@@ -42,29 +54,48 @@ import lombok.ToString;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Livro implements Comparable<Livro> {
+@Entity
+@SequenceGenerator(sequenceName = "seq_livro", name = "ID_SEQUENCE", allocationSize = 1)
+public class Livro implements Comparable<Livro>, Serializable {
 
-	private String titulo;
+	private static final long serialVersionUID = 1L;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ID_SEQUENCE")
+	private Long id;
+
+	@NaturalId
+	@Column(nullable = false, unique = true)
 	private String isbn;
 
+	@Column(nullable = false, unique = false)
+	private String titulo;
+
 	@Singular
+	@ManyToMany
 	private Set<Autor> autores;
 
 	@Singular
+	@ManyToMany
 	private Set<Categoria> categorias;
 
 	@Singular
+	@OneToMany(mappedBy = "livro")
 	private Set<Exemplar> exemplares;
 
+	@Column(nullable = true, unique = false)
 	private int paginas;
 
+	@Column(nullable = true, unique = false)
 	private int edicao;
 
+	@Column(nullable = true, unique = false)
 	private int ano;
 
+	@Column(nullable = true, unique = false)
 	private String localizacao;
 
+	@Column(nullable = true, unique = false)
 	private String descricao;
 
 	@Override
