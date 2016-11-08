@@ -76,7 +76,7 @@ public class Exemplar implements Comparable<Exemplar>, Serializable {
 
 	@NonNull
 	@ManyToOne
-	@JoinColumn(name = "id", foreignKey = @ForeignKey(name = "EXEMPLAR_ID_FK"))
+	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "EXEMPLAR_LIVRO_ID_FK"))
 	private Livro livro;
 
 	@Temporal(TemporalType.DATE)

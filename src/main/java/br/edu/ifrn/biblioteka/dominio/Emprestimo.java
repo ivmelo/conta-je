@@ -68,12 +68,12 @@ public class Emprestimo implements Comparable<Emprestimo>, Serializable {
 
 	@ManyToOne
 	@NonNull
-	@JoinColumn(name = "id", foreignKey = @ForeignKey(name = "EMPRESTIMO_ID_FK"))
+	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "EMPRESTIMO_EXEMPLAR_ID_FK"))
 	private Exemplar exemplar;
 
 	@ManyToOne
 	@NonNull
-	@JoinColumn(name = "id", foreignKey = @ForeignKey(name = "EMPRESTIMO_ID_FK"))
+	@JoinColumn(nullable = false, foreignKey = @ForeignKey(name = "EMPRESTIMO_USUARIO_ID_FK"))
 	private Usuario usuario;
 
 	@Temporal(TemporalType.TIMESTAMP)
